@@ -1,4 +1,4 @@
-<h1>
+<h1 align="center">
 LaunchBase
 </h1>
 <p align="center">Resoluções e desafios do Bootcamp da Rocketseat</p>
