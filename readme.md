@@ -1,6 +1,7 @@
 <h1 align="center">
-LaunchBase
+    <img alt="Launchbase" src="https://storage.googleapis.com/golden-wind/bootcamp-launchbase/logo.png" width="400px" />
 </h1>
+
 <p align="center">Resoluções e desafios do Bootcamp da Rocketseat</p>
 
 <p align="center">
