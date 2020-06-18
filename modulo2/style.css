@@ -90,6 +90,12 @@ header {
 
 .card {
   background-color: var(--color-rocket);
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover{
+  border: 2px solid white;
+  cursor: pointer;
 }
 
 .card-image-container img {

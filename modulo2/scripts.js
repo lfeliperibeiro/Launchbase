@@ -2,7 +2,7 @@ const modalOverlay = document.querySelector(".modal-overlay");
 const cards = document.querySelectorAll(".card");
 
 for (let card of cards) {
-  card.addEventListener("click", function () {
+  card.addEventListener("click", () => {
     const videoId = card.getAttribute("id");
     modalOverlay.classList.add("active");
     modalOverlay.querySelector(
@@ -11,7 +11,7 @@ for (let card of cards) {
   });
 }
 
-document.querySelector(".close-modal").addEventListener("click", function () {
+document.querySelector(".close-modal").addEventListener("click", () => {
   modalOverlay.classList.remove("active");
   modalOverlay.querySelector("iframe").src = "";
 });
