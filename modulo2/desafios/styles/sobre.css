@@ -1,66 +1,162 @@
 @import "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap";
+:root {
+  --color-rocket: #7159c1;
+}
 
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
 
-  body{
-      background-color: blueviolet;
-      color: white;
-  }
-  body div{
-      text-align: center;
-      padding: 30px;
-  }
-  .content img{
-    border-radius: 50%;
-    height: 250px;
-    padding: 36px;
-  }
+body {
+  background-color: blueviolet;
+  color: white;
+}
+body div {
+  text-align: center;
+  padding: 30px;
+}
 
-  .content h1{
-      font-size: 36px;
-      line-height: 46px;
-      font-weight: 700;      
-  }
+header .link a {
+  font-size: 20px;
+  line-height: 30px;
+  text-decoration: none;
+  margin-right: 16px;
+  color: white;
+}
 
-  .content p{
-      font-size: 26px;
-      line-height: 36px;
-      font-weight: 300;
-  }
-  .content h2{
-      margin-top: 16px;
-      font-size: 26px;
-      line-height: 36px;
-  }
+header .link a:hover {
+  color: violet;
+  transition: color 200ms;
+}
 
-  .content ul li{
-      margin-top: 16px;
-      font-size: 18px;
-      line-height: 28px;
-      font-weight: 500;
-      text-align: center;
-      list-style-type: none;
+.content img {
+  border-radius: 50%;
+  height: 250px;
+  padding: 36px;
+}
 
-  }
+.content h1 {
+  font-size: 36px;
+  line-height: 46px;
+  font-weight: 700;
+}
 
-  .social a{
-      font-size: 20px;
-      line-height: 30px;
-      text-decoration: none;
-      margin-right: 16px;
-      color: white;
-  }
+.content p {
+  font-size: 26px;
+  line-height: 36px;
+  font-weight: 300;
+}
+.content h2 {
+  margin-top: 16px;
+  font-size: 26px;
+  line-height: 36px;
+}
 
-  .social a:hover{
-      color: violet;
-      transition: color 200ms;      
-  }
+.content ul li {
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  text-align: center;
+  list-style-type: none;
+}
 
+.social a {
+  font-size: 20px;
+  line-height: 30px;
+  text-decoration: none;
+  margin-right: 16px;
+  color: white;
+}
 
+.social a:hover {
+  color: violet;
+  transition: color 200ms;
+}
 
+/* Card */
 
+.cards {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
 
+.card {
+  background-color: var(--color-rocket);
+  padding: 0;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.1);
+}
+.card-image-container {
+  padding: 0;
+}
+.card-image-container img {
+  width: 100%;
+}
+
+.card-content {
+  padding: 26px;
+  text-align: center;
+}
+
+.card-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 24px;
+}
+
+.card-modules {
+  background-color: var(--color-rocket);
+  filter: brightness(90%);
+  padding: 5px 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+/* modal */
+
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+}
+
+.modal {
+  background-color: white;
+  width: 80%;
+  height: 80%;
+  margin: 5vh auto;
+  position: relative;
+  padding: 0;
+}
+
+.modal .close-modal {
+  color: var(--color-rocket);
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+/* MODAL Active */
+
+.modal-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+iframe{
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  display: flex;
+
+    
+}
