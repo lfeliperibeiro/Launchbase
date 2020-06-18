@@ -10,12 +10,14 @@
 }
 
 body {
-  background-color: blueviolet;
+  background-color: rgb(25, 3, 46);
   color: white;
-}
-body div {
   text-align: center;
-  padding: 30px;
+  margin-top: 20px;
+}
+
+header{
+  padding: 26px;
 }
 
 header .link a {
@@ -24,12 +26,29 @@ header .link a {
   text-decoration: none;
   margin-right: 16px;
   color: white;
+  
 }
 
 header .link a:hover {
   color: violet;
   transition: color 200ms;
 }
+
+ p span.purple{
+  color: var(--color-rocket);
+  font-weight: 800;
+}
+
+p span.orange{
+  color: rgb(253, 149, 31);
+  font-weight: 800;
+}
+
+p span.green{
+  color: rgb(4, 211, 97);
+  font-weight: 800;
+}
+
 
 .content img {
   border-radius: 50%;
@@ -63,6 +82,10 @@ header .link a:hover {
   list-style-type: none;
 }
 
+.social{
+padding: 26px;  
+}
+
 .social a {
   font-size: 20px;
   line-height: 30px;
@@ -87,15 +110,21 @@ header .link a:hover {
 }
 
 .card {
-  background-color: var(--color-rocket);
-  padding: 0;
+  background: black;
   box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; 
+  
 }
+
 .card-image-container {
-  padding: 0;
+  padding: 64px; 
+   
 }
 .card-image-container img {
-  width: 100%;
+  max-width: 200px;
+  max-height: 200px;
+  text-align: center;
+  
 }
 
 .card-content {
@@ -107,13 +136,14 @@ header .link a:hover {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 24px;
+  align-items: center;
 }
 
 .card-modules {
   background-color: var(--color-rocket);
   filter: brightness(90%);
   padding: 5px 20px;
-  border-radius: 20px;
+  border-radius: 8px;
   text-align: center;
 }
 
@@ -130,11 +160,11 @@ header .link a:hover {
 
 .modal {
   background-color: white;
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
   margin: 5vh auto;
   position: relative;
-  padding: 0;
+  padding: 5px;
 }
 
 .modal .close-modal {
