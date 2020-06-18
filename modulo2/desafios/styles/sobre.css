@@ -113,7 +113,13 @@ padding: 26px;
   background: black;
   box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 8px; 
+  cursor: pointer;
   
+}
+
+.card:hover{
+  border: 1px solid var(--color-rocket);
+  transition: color 200ms;
 }
 
 .card-image-container {
