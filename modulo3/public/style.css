@@ -1,0 +1,167 @@
+@import "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,100&display=swap";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+:root {
+  --color-coral: #fc766a;
+  --color-rocket: #7159c1;
+}
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+body {
+  background: #080124;
+  color: white;
+  font-family: "Lato", sans-serif;
+}
+header {
+  padding: 32px;
+  border-bottom: 1px solid gray;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.links {
+  text-align: center;
+}
+
+.links a {
+  color: white;
+  font-size: 18px;
+  line-height: 28px;
+  margin: 0 16px;
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: var(--color-coral);
+  transition: color 300ms;
+}
+
+#links-footer a {
+  border-bottom: 1px solid var(--color-coral);
+}
+
+#wrapper {
+  text-align: center;
+  padding: 32px;
+}
+
+#wrapper img {
+  border-radius: 50%;
+  border: 5px solid var(--color-coral);
+  margin-bottom: 32px;
+}
+
+#wrapper h1 {
+  font-size: 42px;
+  line-height: 52px;
+  font-weight: 900;
+}
+
+#wrapper h2 {
+  font-size: 24px;
+  line-height: 34px;
+  font-weight: normal;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+#wrapper p {
+  max-width: 500px;
+  margin: 32px auto;
+  font-size: 24px;
+  line-height: 34px;
+}
+
+#wrapper p a {
+  color: var(--color-coral);
+}
+
+/* Cards */
+
+.cards {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* gap da espaço entre os elementos */
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--color-rocket);
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover{
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.card-image-container img {
+  width: 100%;
+}
+
+.card-content {
+  padding: 24px;
+  text-align: center;
+}
+
+/* O grid trabalha ambos os eixos */
+
+.card-info {
+  display: grid;
+  /* cria duas colunas */
+  grid-template-columns: 1fr 1fr;
+  padding: 24px;
+}
+
+.card-price {
+  background-color: var(--color-rocket);
+  filter: brightness(90%);
+  padding: 5px 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+/* MODAL overlay */
+
+.modal-overlay{
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal{
+  background: white;
+  width: 90%;
+  height: 90%;
+  margin: 5vh auto;
+  position: relative;
+}
+
+.modal .close-modal{
+  color: black;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  cursor: pointer;
+}
+
+/* MODAL Active */
+
+.modal-overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+
+iframe{
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  top: 5%;
+}
