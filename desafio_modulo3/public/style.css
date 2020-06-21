@@ -12,16 +12,14 @@
 body {
   background-color: rgb(25, 3, 46);
   color: white;
-  text-align: center;   
-  
+  text-align: center;
 }
 
-header{
+header {
   padding: 26px;
-  background-color: rgba(0, 0, 0, 0.3); 
+  background-color: rgba(0, 0, 0, 0.3);
   top: 0;
   margin-bottom: 40px;
-
 }
 
 header .link a {
@@ -30,7 +28,6 @@ header .link a {
   text-decoration: none;
   margin-right: 16px;
   color: white;
-  
 }
 
 header .link a:hover {
@@ -38,27 +35,25 @@ header .link a:hover {
   transition: color 200ms;
 }
 
- p span.purple{
+p span.purple {
   color: var(--color-rocket);
   font-weight: 800;
 }
 
-p span.orange{
+p span.orange {
   color: rgb(253, 149, 31);
   font-weight: 800;
 }
 
-p span.green{
+p span.green {
   color: rgb(4, 211, 97);
   font-weight: 800;
 }
-
 
 .content img {
   border-radius: 50%;
   height: 250px;
   padding: 36px;
-  
 }
 
 .content h1 {
@@ -78,24 +73,20 @@ p span.green{
   line-height: 36px;
 }
 
-.content ul > li {
+.content li {
   margin-top: 16px;
   font-size: 20px;
   line-height: 30px;
   font-weight: 500;
   text-align: center;
   list-style-type: none;
-  margin-bottom: 20px;
 }
 
-footer .social{
-background-color: rgba(0, 0, 0, 0.3);
-padding: 20px;
-margin-top: 20px;
-bottom: 0;
-
-
-
+footer .social {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin-top: 20px;
+  bottom: 0;
 }
 
 .social a {
@@ -126,25 +117,22 @@ bottom: 0;
 .card {
   background: black;
   box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 8px; 
+  border-radius: 8px;
   cursor: pointer;
-  
 }
 
-.card:hover{
+.card:hover {
   border: 1px solid var(--color-rocket);
   transition: color 200ms;
 }
 
 .card-image-container {
-  padding: 64px; 
-   
+  padding: 64px;
 }
 .card-image-container img {
   max-width: 200px;
   max-height: 200px;
   text-align: center;
-  
 }
 
 .card-content {
@@ -167,9 +155,8 @@ bottom: 0;
   text-align: center;
 }
 
-.img-error img{
+.img-error img {
   padding: 66px;
-
 }
 
 /* modal */
@@ -185,8 +172,8 @@ bottom: 0;
 
 .modal {
   background-color: white;
-  width: 90%;
-  height: 90%;
+  width: 50%;
+  height: 50%;
   margin: 5vh auto;
   position: relative;
   padding: 5px;
@@ -200,18 +187,62 @@ bottom: 0;
   cursor: pointer;
 }
 
+.modal .maximize-modal {
+  color: var(--color-rocket);
+  position: absolute;
+  right: 50px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.modal .minimize-modal {
+  color: var(--color-rocket);
+  position: absolute;
+  right: 90px;
+  top: 20px;
+  cursor: pointer;
+}
+
 /* MODAL Active */
 
-.modal-overlay.active{
+
+
+.modal-overlay.active {
   opacity: 1;
   visibility: visible;
 }
 
-iframe{
-  width: 90%;
+iframe {
+  width: 99%;
   height: 90%;
   position: absolute;
   display: flex;
+  top: 10%;
+  border-radius: 6px;
+}
 
-    
+/* modal maximize */
+
+.modal.maximize{
+  opacity: 1;
+  visibility: visible;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: 0;
+  top: 0;
+  
+}
+
+.maximize iframe{
+  width: 99%;
+  height: 96%;
+  position: absolute;
+  display: flex;
+  top: 5%;
+  border-radius: 3px;
+
+
+
 }
