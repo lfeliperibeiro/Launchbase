@@ -16,13 +16,15 @@ document.querySelector(".close-modal").addEventListener("click", function () {
   modalOverlay.classList.remove("active");
 });
 
+document.querySelector(".close-modal").addEventListener("click", function () {
+  modal.classList.remove('maximize');
+});
+
 document
   .querySelector(".maximize-modal")
   .addEventListener("click", function () {
     modal.classList.add("maximize");
   });
-
-
 
 document
   .querySelector(".minimize-modal")
