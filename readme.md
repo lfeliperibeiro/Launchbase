@@ -20,3 +20,13 @@
     <img alt="Launchbase" src="./screenshots/erro.png" width="800px" />
 </h1>
 
+## :rocket: Tecnologias Utilizadas
+
+O projeto está sendo desenvolvido utilizando as seguintes tecnologias
+
+* HTML
+* CSS
+* JavaScript
+* Node.js
+* Nunjucks
+
