@@ -11,12 +11,25 @@ server.set("view engine", "njk");
 
 nunjucks.configure("views", {
   express: server,
+  autoescape: false,
 });
 
 // cria as rotas
 
 server.get("/", function (req, res) {
-  return res.render("index");
+  const about = {
+    avatar_url:
+      "https://avatars1.githubusercontent.com/u/53883371?s=460&u=0a08333623e5c50ddf49c362a76133bd341ec710&v=4",
+    name: "Felipe Ribeiro",
+    role: "Desenvolvedor web",
+    description:
+      'Programador fullstack buscando sempre melhorar e aprender mais. Criador de <a href="https://www.feliperibeiro.art.br" target="_blank">Felipe Ribeiro</a>',
+    links: [
+      { name: "Github", url: "https://github.com/lfeliperibeiro" },
+      { name: "Linkedin", url: "https://www.linkedin.com/in/lfeliperibeiro/" },
+    ],
+  };
+  return res.render("index", { about });
 });
 
 server.get("/portfolio", function (req, res) {

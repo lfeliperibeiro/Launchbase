@@ -21,7 +21,7 @@ header {
   background-color: rgb(29, 28, 28);
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.8);
   top: 0;
-  
+
   text-align: center;
   align-items: center;
 }
@@ -127,11 +127,19 @@ footer .social {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
   margin: 50px;
-  margin-top: 150px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+#launchbase.card{
+  padding: 48px 42px;
+}
+
+#launchbase img{
+  max-width: 210px;
+  margin-top: 26px;
 }
 
 .card {
@@ -139,9 +147,10 @@ footer .social {
   box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   cursor: pointer;
-  padding: 64px 48px;
-  display: flex;
-  flex-direction: column;
+  padding: 60px 48px;
+  display: grid;
+  margin-top: 100px;
+  border: 1px solid rgba(46, 46, 46, 0.8);
 }
 
 .card:hover {
@@ -153,10 +162,12 @@ footer .social {
   padding: 20px;
 }
 
+
+
+
 .card-image-container img {
-  max-width: 300px;
-  max-height: 200px;
-  align-items: center;
+   align-items: center;
+   
 }
 
 .card-content {
@@ -169,6 +180,7 @@ footer .social {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 24px;
+  align-items: center;
 }
 
 .modulos {
@@ -181,8 +193,6 @@ footer .social {
   padding: 5px 20px;
   border-radius: 8px;
   align-content: center;
-  
-  
 }
 
 .img-error img {

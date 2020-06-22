@@ -4,20 +4,17 @@
 {% endblock title %}
 {% block content %}
   <div class="content">
-    <img src="/img/rockteseat.jpg" alt="Rocktseat"/>
+    <img src="{{principal.avatar}}" alt="{{principal.name}}"/>
 
-    <h1>Rocktseat</h1>
-    <p>Empresa de ensino de técnologia</p>
+    <h1>{{principal.name}}</h1>
+    <p>{{principal.subtitle}}</p>
     <div class="lista">
-      <h2>Técnologias Utilizadas</h2>
+      <h2>{{principal.title}}</h2>
+      {% for lista in principal.lista %}
       <ul>
-        <li>JavaScrit</li>
-        <li>Node.js</li>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>React</li>
-        <li>React-Native</li>
+        <li>{{lista.name}}</li>
       </ul>
+      {% endfor %}
     </div>
 
   </div>
