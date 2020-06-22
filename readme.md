@@ -13,10 +13,10 @@
 <h1 align="center">Screenshots dos desafios concluidos</h1>
 
 <h1 align="center">
-    <img alt="Launchbase" src="./screenshots/cursos.png" width="800px" />
+    <img alt="Launchbase" src="./screenshots/curso.png" width="800px" />
 </h1>
 
 <h1 align="center">
-    <img alt="Launchbase" src="./screenshots/error.png" width="800px" />
+    <img alt="Launchbase" src="./screenshots/erro.png" width="800px" />
 </h1>
 
