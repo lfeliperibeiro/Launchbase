@@ -17,6 +17,6 @@
 </h1>
 
 <h1 align="center">
-    <img alt="Launchbase" src="./screenshots/erro.png" width="800px" />
+    <img alt="Launchbase" src="./screenshots/error.png" width="800px" />
 </h1>
 
