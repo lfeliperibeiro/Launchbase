@@ -4,12 +4,14 @@ module.exports = [
     title: "Desvendando o CSS Grid na prática | Mayk Brito",
     duration: "57 min",
     price: "Free",
+    featured: true,
   },
   {
     id: "GTMEuHxh8aQ",
     title: "Validação de forms customizada | Mayk Brito",
     duration: "61 min",
     price: "Free",
+    featured: true,
   },
   {
     id: "-VQPimwkstM",
@@ -35,5 +37,6 @@ module.exports = [
       "Manipulação de DOM com JavaScript, do zero, na prática | Mayk Brito",
     duration: "57 min",
     price: "Free",
+    featured: true,
   },
 ];
