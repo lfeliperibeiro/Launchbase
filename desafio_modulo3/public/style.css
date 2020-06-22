@@ -10,23 +10,33 @@
 }
 
 body {
-  background-color: rgb(25, 3, 46);
+  background-color: black;
   color: white;
   text-align: center;
 }
 
 header {
-  padding: 26px;
-  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  padding: 16px;
+  background-color: rgb(29, 28, 28);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.8);
   top: 0;
-  margin-bottom: 40px;
+  
+  text-align: center;
+  align-items: center;
+}
+
+header a {
+  margin-right: 50px;
 }
 
 header .link a {
-  font-size: 20px;
+  font-size: 26px;
   line-height: 30px;
+  font-weight: bold;
+  align-self: flex-end;
   text-decoration: none;
-  margin-right: 16px;
+  margin-right: 26px;
   color: white;
 }
 
@@ -73,20 +83,31 @@ p span.green {
   line-height: 36px;
 }
 
-.content li {
-  margin-top: 16px;
+.lista ul {
+  display: grid;
+
   font-size: 20px;
   line-height: 30px;
   font-weight: 500;
-  text-align: center;
+  justify-content: center;
   list-style-type: none;
+  margin: 0 auto;
+}
+
+.lista ul li {
+  text-align: justify;
+  margin-top: 16px;
 }
 
 footer .social {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(29, 28, 28);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.8);
   padding: 20px;
-  margin-top: 20px;
+  position: absolute;
   bottom: 0;
+  width: 97.9%;
+
+  align-items: center;
 }
 
 .social a {
@@ -105,20 +126,22 @@ footer .social {
 /* Card */
 
 .cards {
-  max-width: 1000px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-  margin-top: 153px;
-  margin-bottom: 200px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  margin: 50px;
+  margin-top: 150px;
 }
 
 .card {
-  background: black;
+  background: url(https://skylab.rocketseat.com.br/static/media/MountainsOpacity.a4edba24.png);
   box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   cursor: pointer;
+  padding: 64px 48px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -127,16 +150,18 @@ footer .social {
 }
 
 .card-image-container {
-  padding: 64px;
+  padding: 20px;
 }
+
 .card-image-container img {
-  max-width: 200px;
+  max-width: 300px;
   max-height: 200px;
-  text-align: center;
+  align-items: center;
 }
 
 .card-content {
-  padding: 26px;
+  display: flex;
+  padding: 18px;
   text-align: center;
 }
 
@@ -144,7 +169,10 @@ footer .social {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 24px;
-  align-items: center;
+}
+
+.modulos {
+  margin-right: 16px;
 }
 
 .card-modules {
@@ -152,7 +180,9 @@ footer .social {
   filter: brightness(90%);
   padding: 5px 20px;
   border-radius: 8px;
-  text-align: center;
+  align-content: center;
+  
+  
 }
 
 .img-error img {
@@ -171,7 +201,7 @@ footer .social {
 }
 
 .modal {
-  background-color: white;
+  background-color: black;
   width: 50%;
   height: 50%;
   margin: 5vh auto;
@@ -205,8 +235,6 @@ footer .social {
 
 /* MODAL Active */
 
-
-
 .modal-overlay.active {
   opacity: 1;
   visibility: visible;
@@ -223,26 +251,22 @@ iframe {
 
 /* modal maximize */
 
-.modal.maximize{
+.modal.maximize {
   opacity: 1;
   visibility: visible;
-  background-color: white;
+  background-color: black;
   width: 100%;
   height: 100%;
   position: relative;
   margin: 0;
   top: 0;
-  
 }
 
-.maximize iframe{
+.maximize iframe {
   width: 99%;
   height: 96%;
   position: absolute;
   display: flex;
   top: 5%;
   border-radius: 3px;
-
-
-
 }
