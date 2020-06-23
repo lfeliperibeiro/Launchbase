@@ -280,3 +280,9 @@ iframe {
   top: 5%;
   border-radius: 3px;
 }
+
+.curso iframe{
+  margin-top: 20px;
+}
+
+
