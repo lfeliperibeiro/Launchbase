@@ -10,15 +10,6 @@
   </a>
 </p>
 
-<h1 align="center">Screenshots dos desafios concluidos</h1>
-
-<h1 align="center">
-    <img alt="Launchbase" src="./screenshots/curso.png" width="800px" />
-</h1>
-
-<h1 align="center">
-    <img alt="Launchbase" src="./screenshots/erro.png" width="800px" />
-</h1>
 
 ## :rocket: Tecnologias Utilizadas
 
