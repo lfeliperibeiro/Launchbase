@@ -3,6 +3,9 @@ const data = require("./data.json");
 const Intl = require("intl");
 const { age, date } = require("./utils");
 
+exports.index = function (req, res) {
+  return res.render("instructors/index", { instructors: data.instructors });
+};
 // show
 
 exports.show = function (req, res) {
@@ -94,6 +97,7 @@ exports.put = function (req, res) {
     ...foundInstructor,
     ...req.body,
     birth: Date.parse(req.body.birth),
+    id: Number(req.body.id)
   };
   data.instructors[index] = instructor;
 
@@ -115,6 +119,6 @@ exports.delete = function (req, res) {
   fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err) {
     if (err) res.send("write file error");
 
-    return res.redirect('/instructors')
+    return res.redirect("/instructors");
   });
 };
