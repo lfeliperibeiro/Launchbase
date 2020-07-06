@@ -64,7 +64,7 @@ exports.edit = function (req, res) {
 
   const member = {
     ...foundMember,
-    birth: date(foundMember.birth),
+    birth: date(foundMember.birth).iso,
   };
   date(foundMember.birth);
   return res.render("members/edit", { member });
