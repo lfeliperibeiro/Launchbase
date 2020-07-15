@@ -1,64 +1,121 @@
+const fs = require("fs");
+const data = require("../data.json");
 const Intl = require("intl");
-const Instructor = require("../models/Instructor");
-const { age, date } = require("../../lib/utils");
+const { age, date } = require("../utils");
 
-module.exports = {
-  index(req, res) {
-    Instructor.all(function (instructors) {
-      return res.render("instructors/index", { instructors });
-    });
-  },
-  create(req, res) {
-    return res.render("instructors/create");
-  },
-  post(req, res) {
-    const keys = Object.keys(req.body);
-    for (key of keys) {
-      if (req.body[key] == "") {
-        return res.send("Please, fill all fields");
-      }
+exports.index = function (req, res) {
+  return res.render("instructors/index", { instructors: data.instructors });
+};
+
+exports.create = function (req, res) {
+  return res.render("instructors/create");
+};
+
+exports.post = function (req, res) {
+  const keys = Object.keys(req.body);
+  for (key of keys) {
+    if (req.body[key] == "") {
+      return res.send("Please, fill all fields");
     }
+  }
 
-    Instructor.create(req.body, function (instructor) {
-      return res.redirect(`/instructor/${instructor.id}`);
-    });
+  let { avatar_url, birth, name, services, gender } = req.body;
 
-    return;
-  },
-  show(req, res) {
-    Instructor.find(req.params.id, (instructor) => {
-      if (!instructor) return res.send("instructor not found");
+  birth = Date.parse(birth);
+  const created_at = Date.now();
+  const id = Number(data.instructors.length + 1);
 
-      instructor.birth = age(instructor.birth);
-      instructor.services = instructor.services.split(",");
-      instructor.created_at = date(instructor.created_at).format;
+  data.instructors.push({
+    id,
+    avatar_url,
+    name,
+    birth,
+    services,
+    gender,
+    created_at,
+  });
 
-      return res.render("instructors/show", { instructor });
-    });
-  },
-  edit(req, res) {
-    Instructor.find(req.params.id, (instructor) => {
-      if (!instructor) return res.send("instructor not found");
+  fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err) {
+    if (err) return res.send("write file error");
 
-      instructor.birth = date(instructor.birth).iso;
+    return res.redirect("/instructors");
+  });
+  //   return res.send(req.body);
+};
 
-      return res.render("instructors/edit", { instructor });
-    });
-  },
-  put(req, res) {
-    const keys = Object.keys(req.body);
-    for (key of keys) {
-      if (req.body[key] == "") {
-        return res.send("Please, fill all fields");
-      }
+exports.show = function (req, res) {
+  const { id } = req.params;
+  const foundInstructor = data.instructors.find(function (instructor) {
+    return instructor.id == id;
+  });
+  if (!foundInstructor) return res.send("instructor not found");
+
+  const instructor = {
+    ...foundInstructor,
+    birth: age(foundInstructor.birth),
+    services: foundInstructor.services.split(", "),
+    created_at: new Intl.DateTimeFormat("pt-BR").format(
+      foundInstructor.created_at
+    ),
+  };
+  return res.render("instructors/show", { instructor });
+};
+
+exports.edit = function (req, res) {
+  const { id } = req.params;
+  const foundInstructor = data.instructors.find(function (instructor) {
+    return instructor.id == id;
+  });
+  if (!foundInstructor) return res.send("instructor not found");
+
+  const instructor = {
+    ...foundInstructor,
+    birth: date(foundInstructor.birth).iso,
+  };
+  date(foundInstructor.birth);
+  return res.render("instructors/edit", { instructor });
+};
+
+exports.put = function (req, res) {
+  const { id } = req.body;
+  let index = 0;
+  const foundInstructor = data.instructors.find(function (
+    instructor,
+    foundindex
+  ) {
+    if (id == instructor.id) {
+      index = foundindex;
+      return true;
     }
-    Instructor.update(req.body, () => {
-      return res.redirect(`/instructors/${req.body.id}`);
-    });
-  },
-  delete(req, res) {
-    Instructor.delete(req.body.id, () => {
-      return res.redirect("/instructors");
-    });
-  },
+  });
+  if (!foundInstructor) return res.send("instructor not found");
+
+  const instructor = {
+    ...foundInstructor,
+    ...req.body,
+    birth: Date.parse(req.body.birth),
+    id: Number(req.body.id),
+  };
+  data.instructors[index] = instructor;
+
+  fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err) {
+    if (err) return res.send("Write error");
+
+    return res.redirect(`/instructors/${id}`);
+  });
+};
+
+// delete
+
+exports.delete = function (req, res) {
+  const { id } = req.body;
+  const filteredInstructors = data.instructors.filter(function (instructor) {
+    return instructor.id != id;
+  });
+  data.instructors = filteredInstructors;
+  fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err) {
+    if (err) res.send("write file error");
+
+    return res.redirect("/instructors");
+  });
 };
