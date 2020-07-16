@@ -1,21 +1,15 @@
 const Intl = require("intl");
-const { date } = require("../../lib/utils");
+const { age, date } = require("../../lib/utils");
+// const Member = require("../models/Member");
 
 module.exports = {
   index(req, res) {
-    return res.render("members/index");
+    Member.all((members) => {
+      return res.render("members/index", { members });
+    });
   },
   create(req, res) {
     return res.render("members/create");
-  },
-  show(req, res) {
-    const keys = Object.keys(req.body);
-    for (key of keys) {
-      if (req.body[key] == "") {
-        return res.send("Please, fill all fields");
-      }
-    }
-    return;
   },
   post(req, res) {
     const keys = Object.keys(req.body);
@@ -24,16 +18,40 @@ module.exports = {
         return res.send("Please, fill all fields");
       }
     }
-
-    birth = Date.parse(req.body.birth);
+    Member.create(req.body, (member) => {
+      return res.redirect(`/members/${member.id}`);
+    });
   },
-  put(req, res) {
-    return;
+  show(req, res) {
+    Member.find(req.params.id, (member) => {
+      if (!member) return res.send("member not found");
+      member.birth = date(member.birth).birthDay;
+
+      return res.render("members/show", { member });
+    });
   },
   edit(req, res) {
-    return;
+    Member.find(req.params.id, (member) => {
+      if (!member) return res.send("member not found");
+      member.birth = date(member.birth).iso;
+
+      return res.render("members/edit", { member });
+    });
+  },
+  put(req, res) {
+    const keys = Object.keys(req.body);
+    for (key of keys) {
+      if (req.body[key] == "") {
+        return res.send("Please, fill all fields");
+      }
+    }
+    Member.update(req.body, () => {
+      return res.redirect(`/members/${req.body.id}`);
+    });
   },
   delete(req, res) {
-    return;
+    Member.delete(req.body.id, () => {
+      return res.redirect("/members");
+    });
   },
 };
