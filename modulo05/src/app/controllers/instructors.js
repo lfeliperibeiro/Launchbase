@@ -33,19 +33,25 @@ module.exports = {
     });
   },
   edit(req, res) {
+    Instructor.find(req.params.id, (instructor) => {
+      if (!instructor) return res.send("instructor not found");
+      instructor.birth = date(instructor.birth).iso;
+
+      return res.render("instructors/edit", { instructor });
+    });
+  },
+  put(req, res) {
     const keys = Object.keys(req.body);
     for (key of keys) {
       if (req.body[key] == "") {
         return res.send("Please, fill all fields");
       }
     }
-    return;
-  },
-  put(req, res) {
-    return;
+    Instructor.update(req.body, () => {
+      return res.redirect(`/instructors/${req.body.id}`);
+    });
   },
   delete(req, res) {
     return;
   },
 };
-// delete
