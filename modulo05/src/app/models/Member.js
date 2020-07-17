@@ -91,4 +91,11 @@ module.exports = {
       }
     );
   },
+  instructorsSelectOptions(callback) {
+    db.query(`SELECT name, id FROM instructors`, (err, results) => {
+      if (err) throw `Database error ${err}`;
+
+      callback(results.rows);
+    });
+  },
 };

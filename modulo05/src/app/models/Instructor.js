@@ -3,11 +3,18 @@ const { age, date } = require("../../lib/utils");
 
 module.exports = {
   all(callback) {
-    db.query(`SELECT * FROM instructors ORDER BY name ASC`, (err, results) => {
-      if (err) `Database error ${err}`;
+    db.query(
+      `SELECT instructors.*, count(members) AS total_students 
+      FROM instructors 
+      LEFT JOIN members ON (members.instructor_id = instructors.id)
+      GROUP BY instructors.id
+      ORDER BY total_students DESC`,
+      (err, results) => {
+        if (err) `Database error ${err}`;
 
-      callback(results.rows);
-    });
+        callback(results.rows);
+      }
+    );
   },
 
   create(data, callback) {
