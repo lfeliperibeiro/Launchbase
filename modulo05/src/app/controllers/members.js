@@ -37,7 +37,12 @@ module.exports = {
       if (!member) return res.send("member not found");
       member.birth = date(member.birth).iso;
 
-      return res.render("members/edit", { member });
+      Member.instructorsSelectOptions((options) => {
+        return res.render("members/edit", {
+          member,
+          instructorOptions: options,
+        });
+      });
     });
   },
   put(req, res) {
