@@ -14,10 +14,10 @@ function paginate(selectedPage, totalPages) {
   let oldPage;
 
   for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
-    const firstANdLastPages = currentPage == 1 || currentPage == totalPages;
+    const firstAndLastPages = currentPage == 1 || currentPage == totalPages;
     const pageAfterSelectedPages = currentPage <= selectedPage + 2;
     const pagesBeforeSelected = currentPage >= selectedPage - 2;
-    if (firstANdLastPages || (pagesBeforeSelected && pageAfterSelectedPages)) {
+    if (firstAndLastPages || (pagesBeforeSelected && pageAfterSelectedPages)) {
       if (oldPage && currentPage - oldPage > 2) {
         pages.push("...");
       }
@@ -28,22 +28,33 @@ function paginate(selectedPage, totalPages) {
       oldPage = currentPage;
     }
   }
-  return pages
+  return pages;
 }
 
-const pagination = document.querySelector(".pagination")
-const page = +pagination.dataset.page
-const total= +pagination.dataset.total
-const pages = paginate(page, total)
+const pagination = document.querySelector(".pagination");
 
-let elements = ""
+function createPagination(pagination) {
+  const filter = pagination.dataset.filter;
+  const page = +pagination.dataset.page;
+  const total = +pagination.dataset.total;
+  const pages = paginate(page, total);
 
-for(let page of pages){
-  if(String(page).includes("...")){
-    elements += `<span>${page}</span>`
-  }else
-  elements += `<a href="?page=${page}">${page}</a>`
+  let elements = "";
+
+  for (let page of pages) {
+    if (String(page).includes("...")) {
+      elements += `<span>${page}</span>`;
+    } else {
+      if (filter) {
+        elements += `<a href="?page=${page}&filter=${filter}">${page}</a>`;
+      } else {
+        elements += `<a href="?page=${page}">${page}</a>`;
+      }
+    }
+  }
+
+  pagination.innerHTML = elements;
 }
-
-pagination.innerHTML = elements
-
+if (pagination) {
+  createPagination(pagination);
+}
