@@ -108,27 +108,37 @@ module.exports = {
       }
     );
   },
-  paginate(params){
-    const {filter, limit, offset, callback} = params
-    let query = `
-    SELECT instructors.*, count(members) as total_students
-    FROM instructors
-    LEFT JOIN members ON (instructors.id = members.instructor_id)`
-    
-    if(filter){
-    query = `${query}
+  paginate(params) {
+    const { filter, limit, offset, callback } = params;
+
+    let query = "",
+      filterQuery = "",
+      totalQuery = `( 
+      SELECT count(*) FROM instructors
+    )AS total`;
+
+    if (filter) {
+      filterQuery = `${query}
     WHERE instructors.name ILIKE '%${filter}%'
     OR instructors.services ILIKE '%${filter}%'
-    `
+    `;
+      totalQuery = `(
+      SELECT count(*) FROM instructors
+      ${filterQuery}
+    ) as total`;
     }
 
-    query = `${query}
-    GROUP BY instructors.id LIMIT $1 OFFSET $2`
-    db.query(query, [limit, offset], (err, results)=>{
-      if(err) throw `Database Error ${err}`
+    query = `
+    SELECT instructors.*, ${totalQuery}, count(members) as total_students
+    FROM instructors
+    LEFT JOIN members ON (instructors.id = members.instructor_id)
+    ${filterQuery}    
+    GROUP BY instructors.id LIMIT $1 OFFSET $2`;
 
-      callback(results.rows)
+    db.query(query, [limit, offset], (err, results) => {
+      if (err) throw `Database Error ${err}`;
 
-    })
-  }
+      callback(results.rows);
+    });
+  },
 };

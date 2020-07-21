@@ -6,3 +6,44 @@ for (item of menuItems) {
     item.classList.add("active");
   }
 }
+
+// paginação
+
+function paginate(selectedPage, totalPages) {
+  let pages = [];
+  let oldPage;
+
+  for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
+    const firstANdLastPages = currentPage == 1 || currentPage == totalPages;
+    const pageAfterSelectedPages = currentPage <= selectedPage + 2;
+    const pagesBeforeSelected = currentPage >= selectedPage - 2;
+    if (firstANdLastPages || (pagesBeforeSelected && pageAfterSelectedPages)) {
+      if (oldPage && currentPage - oldPage > 2) {
+        pages.push("...");
+      }
+      if (oldPage && currentPage - oldPage == 2) {
+        pages.push(oldPage + 1);
+      }
+      pages.push(currentPage);
+      oldPage = currentPage;
+    }
+  }
+  return pages
+}
+
+const pagination = document.querySelector(".pagination")
+const page = +pagination.dataset.page
+const total= +pagination.dataset.total
+const pages = paginate(page, total)
+
+let elements = ""
+
+for(let page of pages){
+  if(String(page).includes("...")){
+    elements += `<span>${page}</span>`
+  }else
+  elements += `<a href="?page=${page}">${page}</a>`
+}
+
+pagination.innerHTML = elements
+
