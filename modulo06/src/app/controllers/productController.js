@@ -1,5 +1,8 @@
+const { formatPrice } = require("../../lib/utils");
 const Category = require("../models/Category");
 const Product = require("../models/Product");
+
+
 
 module.exports = {
   create(request, response) {
@@ -13,7 +16,7 @@ module.exports = {
       });
   },
   async post(request, response) {
-    const keys = Object.keys(req.body);
+    const keys = Object.keys(request.body);
     for (key of keys) {
       if (request.body[key] === "") {
         return response.send("Please, fill all fields");
@@ -28,11 +31,33 @@ module.exports = {
     let results = await Product.find(request.params.id);
     const product = results.rows[0];
 
-    if(!product) return response.send('Product not found')
+    if (!product) return response.send("Product not found");
+
+    product.old_price = formatPrice(product.old_price);
+    product.price = formatPrice(product.price);
 
     results = await Category.all();
     const categories = results.rows;
 
-    return response.render("products/edit.njk", {product, categories})
+    return response.render("products/edit.njk", { product, categories });
+  },
+  async put(request, response) {
+    const keys = Object.keys(request.body);
+    for (key of keys) {
+      if (request.body[key] === "") {
+        return response.send("Please, fill all fields");
+      }
+    }
+    request.body.price = request.body.price.replace(/\D/g, "")
+
+    if(request.body.old_price != request.body.price){
+      const oldProduct = await Product.find(request.body.id)
+
+      request.body.old_price = oldProduct.rows[0].price
+    }
+
+    await Product.update(request.body);
+
+    return response.redirect(`/products/${request.body.id}/edit`)
   },
 };
