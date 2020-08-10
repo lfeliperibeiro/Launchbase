@@ -4,6 +4,7 @@ const Product = require("../models/Product");
 
 
 
+
 module.exports = {
   create(request, response) {
     Category.all()
@@ -60,4 +61,9 @@ module.exports = {
 
     return response.redirect(`/products/${request.body.id}/edit`)
   },
+  async delete(request, response){
+    await Product.delete(request.body.id)
+
+    return response.redirect('/products/create')
+  }
 };
