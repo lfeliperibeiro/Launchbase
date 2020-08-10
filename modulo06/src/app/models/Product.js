@@ -15,7 +15,7 @@ module.exports = {
         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING id
         `;
-          
+
     data.price = data.price.replace(/\D/g, "");
 
     const values = [
@@ -29,5 +29,10 @@ module.exports = {
       data.status || 1,
     ];
     return db.query(query, values);
+  },
+  find(id) {
+    return db.query(`
+      SELECT * FROM products WHERE id = $1`, [id]
+    )
   },
 };

@@ -2,28 +2,37 @@ const Category = require("../models/Category");
 const Product = require("../models/Product");
 
 module.exports = {
-  create(req, res) {
+  create(request, response) {
     Category.all()
-      .then(function(results) {
+      .then(function (results) {
         const categories = results.rows;
-        return res.render("products/create.njk", { categories });
-      }).catch(function(err) {
-       throw new Error(err);
+        return response.render("products/create.njk", { categories });
+      })
+      .catch(function (err) {
+        throw new Error(err);
       });
   },
-  async post(req, res){
-    const keys = Object.keys(req.body)
-    for(key of keys){
-      if(req.body[key] === ""){
-        return res.send("Please, fill all fields")
+  async post(request, response) {
+    const keys = Object.keys(req.body);
+    for (key of keys) {
+      if (request.body[key] === "") {
+        return response.send("Please, fill all fields");
       }
     }
-    let results = await Product.create(req.body)
-    const productId = results.rows[0].id
-    results = await Category.all()
-    const categories = results.rows
+    let results = await Product.create(request.body);
+    const productId = results.rows[0].id;
 
+    return response.redirect(`/products/${productId}`);
+  },
+  async edit(request, response) {
+    let results = await Product.find(request.params.id);
+    const product = results.rows[0];
 
-    return res.render("products/create.njk", { productId, categories })
-  }
+    if(!product) return response.send('Product not found')
+
+    results = await Category.all();
+    const categories = results.rows;
+
+    return response.render("products/edit.njk", {product, categories})
+  },
 };
