@@ -1,6 +1,7 @@
 const { formatPrice } = require("../../lib/utils");
 const Category = require("../models/Category");
 const Product = require("../models/Product");
+const File = require("../models/File");
 
 
 
@@ -23,8 +24,14 @@ module.exports = {
         return response.send("Please, fill all fields");
       }
     }
+
+    if(request.files.length == 0)
+      return response.send("Please, send at leaste one image")
+
     let results = await Product.create(request.body);
     const productId = results.rows[0].id;
+
+
 
     return response.redirect(`/products/${productId}`);
   },
