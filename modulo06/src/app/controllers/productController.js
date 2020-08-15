@@ -1,4 +1,5 @@
 const { formatPrice } = require("../../lib/utils");
+
 const Category = require("../models/Category");
 const Product = require("../models/Product");
 const File = require("../models/File");
@@ -31,12 +32,12 @@ module.exports = {
     let results = await Product.create(request.body);
     const productId = results.rows[0].id;
 
-    const filesPromisses = request.files.map(file => File.create({
+    const filesPromise = request.files.map(file => File.create({
       ...file,
       product_id: productId
     }))
 
-    await Promise.all(filesPromisses)
+    await Promise.all(filesPromise)
 
     return response.redirect(`/products/${productId}`);
   },
