@@ -26,34 +26,15 @@ module.exports = {
       }
     }
 
-    if(request.files.length == 0)
-    return response.send("Please, send at leaste one image")
-    
+    if(request.files.length == 0) return response.send("Please, send at leaste one image")    
 
     let results = await Product.create(request.body);
     const productId = results.rows[0].id;
     
-    // o PROBLEMA É JUSTO aqui
-    try {
-    console.log(request.files);
-    console.log(request.files.length);
-    const filesMap = request.files.map(file => console.log(file))
-    console.log(filesMap);
+    const filesPromise = request.files.map(file => File.create({...file, product_id: productId }))
+    await Promise.all(filesPromise)
 
-    const filesPromise = request.files.map(file => File.create({
-      ...file,
-      product_id: productId
-    }))
-    console.log(filesPromise)
-
-    const promiseFiles = await Promise.all(filesPromise)
-    console.log(promiseFiles)
-  } catch(err) {
-    console.error(err);
-  }
-  
-    
-    return response.redirect(`/products/${productId}`);    
+    return response.redirect(`/products/${productId}/edit`);    
   },
   async edit(request, response) {
     let results = await Product.find(request.params.id);
