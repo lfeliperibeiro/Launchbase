@@ -18,7 +18,7 @@ module.exports = {
         throw new Error(err);
       });
   },
-  async post(request, response) {
+  async post(request, response) {    
     const keys = Object.keys(request.body);
     for (key of keys) {
       if (request.body[key] === "") {
@@ -27,19 +27,33 @@ module.exports = {
     }
 
     if(request.files.length == 0)
-      return response.send("Please, send at leaste one image")
+    return response.send("Please, send at leaste one image")
+    
 
     let results = await Product.create(request.body);
     const productId = results.rows[0].id;
+    
+    // o PROBLEMA É JUSTO aqui
+    try {
+    console.log(request.files);
+    console.log(request.files.length);
+    const filesMap = request.files.map(file => console.log(file))
+    console.log(filesMap);
 
     const filesPromise = request.files.map(file => File.create({
       ...file,
       product_id: productId
     }))
+    console.log(filesPromise)
 
-    await Promise.all(filesPromise)
-
-    return response.redirect(`/products/${productId}`);
+    const promiseFiles = await Promise.all(filesPromise)
+    console.log(promiseFiles)
+  } catch(err) {
+    console.error(err);
+  }
+  
+    
+    return response.redirect(`/products/${productId}`);    
   },
   async edit(request, response) {
     let results = await Product.find(request.params.id);
