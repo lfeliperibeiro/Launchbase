@@ -24,7 +24,7 @@ module.exports = {
     }
 
     if(request.files.length == 0) return response.send("Please, send at leaste one image")    
-
+    
     let results = await Product.create(request.body);
     const productId = results.rows[0].id;
     
@@ -59,9 +59,19 @@ module.exports = {
   async put(request, response) {
     const keys = Object.keys(request.body);
     for (key of keys) {
-      if (request.body[key] === "") {
+      if (request.body[key] === "" && key != "removed_files") {
         return response.send("Please, fill all fields");
       }
+    }
+
+    if (request.body.removed_files){
+      const removedFiles = request.body.removed_files.split(',')
+      const lastIndex = removedFiles.length - 1
+      removedFiles.splice(lastIndex, 1)
+
+      const removedFilesPromisses = removedFiles.map(id => File.delete(id))
+
+      await Promise.all(removedFilesPromisses)
     }
     request.body.price = request.body.price.replace(/\D/g, "")
 
