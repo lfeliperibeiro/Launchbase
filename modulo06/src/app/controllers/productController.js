@@ -42,10 +42,19 @@ module.exports = {
     product.old_price = formatPrice(product.old_price);
     product.price = formatPrice(product.price);
 
+    //  get categories
     results = await Category.all();
     const categories = results.rows;
 
-    return response.render("products/edit.njk", { product, categories });
+    // get images
+    results = await Product.files(product.id)
+    let files = results.rows
+    files = files.map(file => ({
+      ...files,
+      src: `${request.protocol}://${request.headers.host}${file.path.replace('public', '')}`
+    }))
+
+    return response.render("products/edit.njk", { product, categories, files });
   },
   async put(request, response) {
     const keys = Object.keys(request.body);
