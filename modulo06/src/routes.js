@@ -8,8 +8,8 @@ routes.get("/", (request, response) => {
 });
 
 routes.get("/products/create", productController.create);
+routes.get("/products/:id", productController.show);
 routes.get("/products/:id/edit", productController.edit);
-routes.get("/products/:id/show", productController.show);
 
 routes.post("/products", multer.array("photos", 6), productController.post);
 routes.put("/products", multer.array("photos", 6), productController.put);
