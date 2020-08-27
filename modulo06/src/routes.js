@@ -2,10 +2,9 @@ const express = require("express");
 const routes = express.Router();
 const multer = require('./app/middlewares/multer')
 const productController = require("./app/controllers/productController");
+const HomeController = require("./app/controllers/HomeController");
 
-routes.get("/", (request, response) => {
-  return response.render("layout.njk");
-});
+routes.get("/", HomeController.index);
 
 routes.get("/products/create", productController.create);
 routes.get("/products/:id", productController.show);
