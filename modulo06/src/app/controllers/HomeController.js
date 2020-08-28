@@ -3,6 +3,7 @@ const { formatPrice} = require("../../lib/utils");
 const Product = require("../models/Product");
 
 
+
 module.exports = {
     async index(request, response){
         let results = await Product.all()
