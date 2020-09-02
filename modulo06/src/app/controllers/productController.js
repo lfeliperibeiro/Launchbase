@@ -36,7 +36,7 @@ module.exports = {
   async show(request, response){
 
     let results = await Product.find(request.params.id)
-    const product = results.rows[0]
+    const product = results.rows[0];
 
     if(!product) return response.send("Product not found")
 
@@ -57,7 +57,7 @@ module.exports = {
     }))
 
 
-    return response.render('products/show.njk', { product, files })
+    return response.render('products/show', { product, files })
   },
   async edit(request, response) {
     let results = await Product.find(request.params.id);
