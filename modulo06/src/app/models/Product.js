@@ -86,23 +86,23 @@ module.exports = {
 
       if(category) {
         filterQuery = `${filterQuery}
-        products.category_id = ${category_id}
+        products.category_id = ${category}
         AND
         `
       }
       filterQuery = `
           ${filterQuery}
           products.name ilike '%${filter}%'
-          OR products.descriptions ilike '%${filters}%'
+          OR products.description ilike '%${filter}%'
           `
      
       query = `
-        SELECT products.*, ${total_query},
+        SELECT products.*,
         categories.name AS category_name
         FROM products
         LEFT JOIN categories ON (categories.id = products.category_id)
         ${filterQuery}
-        GROUP BY categories.name
+        
       `
       return db.query(query)
   }
