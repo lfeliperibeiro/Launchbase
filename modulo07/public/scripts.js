@@ -11,6 +11,38 @@ const Mask = {
         currency: 'BRL'
     }).format(value/100)
    
+    },
+    cpfCnpj(value) {
+        if(value.length > 17)
+            value = value.slice(0, -1)
+        value = value.replace(/\D/g, "")
+        // ckeck if is cpf or cnpj
+        if(value.length > 11){
+            value = value.replace(/(\d{2})(\d)/, "$1.$2")
+
+            value = value.replace(/(\d{3})(\d)/, "$1.$2")
+
+            value = value.replace(/(\d{3})(\d)/, "$1/$2")
+            
+            value = value.replace(/(\d{4})(\d)/, "$1-$2")
+
+        } else {
+            value = value.replace(/(\d{3})(\d)/, "$1.$2")
+            
+            value = value.replace(/(\d{3})(\d)/, "$1.$2")
+            
+            value = value.replace(/(\d{3})(\d)/, "$1-$2")
+        }
+        return value
+    },
+    cep(value) {
+        if(value.length > 9)
+            value = value.slice(0, -1);
+
+        value = value.replace(/\D/g, "")
+        value = value.replace(/(\d{5})(\d)/, "$1-$2")
+
+        return value
     }
 }
 
