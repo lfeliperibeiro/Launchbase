@@ -9,9 +9,14 @@ routes.get("/", HomeController.index);
 routes.use('/products', products)
 routes.use('/users', users)
 
+// Alias
 routes.get("/ads/create", (request, response) => {
   return response.redirect("/products/create");
 });
+
+routes.get('/accounts', function(request, response) {
+  return response.redirect('/users/register')
+})
 
 
 module.exports = routes;
