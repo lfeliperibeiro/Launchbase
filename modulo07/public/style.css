@@ -526,6 +526,16 @@ form .item #photos-preview img{
   max-width: 60%;
 }
 
+/* validade errors */
+
+.input .error {
+  background-color: #e74c3c;
+  padding: 4px;
+  border-radius: 4px;
+  color: #FFF;
+  max-width: 60%;
+  margin-top: 4px;
+}
 
 
 
