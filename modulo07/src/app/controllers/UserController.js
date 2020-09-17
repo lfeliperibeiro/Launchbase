@@ -14,6 +14,8 @@ module.exports = {
         }
 
         let {email, cpf_cnpj, password, passwordRepeat} = request.body;
+
+        cpf_cnpj = cpf_cnpj.replace(/\D/g, "")
         
         const user = await User.findOne({
             where: { email},
@@ -25,7 +27,5 @@ module.exports = {
         return response.send('Password Mismatch')
 
         return response.send('Passed!')
-
-
     }
 }
