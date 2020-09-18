@@ -17,7 +17,10 @@ async function post(request, response, next){
             where: { email},
             or: {cpf_cnpj}
         })
-        if(user) return response.send('User exists')
+        if(user) return response.render('users/register', {
+            user: request.body,
+            error: 'Usuario já cadastrado.'
+        })
 
         if(password != passwordRepeat)
         return response.send('Password Mismatch')
@@ -28,5 +31,5 @@ async function post(request, response, next){
 }
 
 module.exports = {
-    post
+    post 
 }
