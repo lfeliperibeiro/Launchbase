@@ -31,8 +31,6 @@ async function post(request, response, next){
             error: 'senhas não conferem'
         })
 
-        return response.send('Passed!')
-
         next()
 }
 
