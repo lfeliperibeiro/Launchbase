@@ -10,6 +10,8 @@ module.exports = {
     async post(request, response) {
         const userId = await User.create(request.body)
 
+        request.session.userId = userId
+
         return response.redirect('/users')
     }
 }
