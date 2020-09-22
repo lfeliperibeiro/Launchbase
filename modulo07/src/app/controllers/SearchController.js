@@ -5,13 +5,13 @@ const Product = require("../models/Product");
 
 
 module.exports = {
-    async index(request, response){
+    async index(req, res){
         try {
             let results,
             params = {}
-            const {filter, category} = request.query
+            const {filter, category} = req.query
             
-            if(!filter) return response.redirect('/')
+            if(!filter) return res.redirect('/')
 
             params.filter = filter
 
@@ -22,7 +22,7 @@ module.exports = {
 
             async function getImage(productId) {
                 let results = await Product.files(productId)
-                const files = results.rows.map(file => `${request.protocol}://${request.headers.host}${file.path.replace("public", "")}`)
+                const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
                 
                 return files[0]
             }
@@ -38,7 +38,7 @@ module.exports = {
             const products = await Promise.all(productsPromisse)
 
             const search = {
-                term: request.query.filter,
+                term: req.query.filter,
                 total: products.length
             }
 
@@ -54,7 +54,7 @@ module.exports = {
                 return categoriesFiltered
             }, [])
 
-            return response.render("search/index", { products, search, categories})
+            return res.render("search/index", { products, search, categories})
 
         }catch(err){
             console.error(err)

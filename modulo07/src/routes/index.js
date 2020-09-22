@@ -10,12 +10,12 @@ routes.use('/products', products)
 routes.use('/users', users)
 
 // Alias
-routes.get("/ads/create", (request, response) => {
-  return response.redirect("/products/create");
+routes.get("/ads/create", (req, res) => {
+  return res.redirect("/products/create");
 });
 
-routes.get('/accounts', function(request, response) {
-  return response.redirect('/users/register')
+routes.get('/accounts', function(req, res) {
+  return res.redirect('/users/register')
 })
 
 
